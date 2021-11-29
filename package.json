@@ -1,0 +1,22 @@
+{
+  "name": "financial-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rvbarross/Financial-Management.git"
+  },
+  "author": "rvbarross/felipepeixoto33",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rvbarross/Financial-Management/issues"
+  },
+  "homepage": "https://github.com/rvbarross/Financial-Management#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
