@@ -1,0 +1,37 @@
+<%- contentFor('body') %>
+    <main class="container">
+        <h1>Incomes</h1>
+        <a class="btn btn-primary" href="/management/incomes/new" role="button">Add</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% incomes.forEach( (income)=> {%>
+                    <tr>
+                        <th scope="row"><%=income.id %></th>
+                        <td><%=income.value %></td>
+                        <td><%=income.description %></td>
+                        <td>
+                            <a href="/management/incomes/edit/<%=income.id %>" class="btn btn-primary">Edit</a>
+                            <a href="" onclick="removeIncome(<%=income.id %>)" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    <% })%>
+            </tbody>
+        </table>
+    </main>
+    <script>
+        function removeIncome(id){
+            if(confirm("Do you want to remove the chosen income?")){
+                fetch(`/management/incomes/remove/${id}`, {
+                method: "POST"})
+                .then((res) =>{document.location.reload()})
+            }   
+        }
+    </script>

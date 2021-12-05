@@ -1,16 +1,25 @@
 const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../database/database_connection')
+const Expense = require('./Expense')
+const Income = require('./Income')
 
-class User extends Model { }
+class User extends Model {}
 User.init({
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-},{ sequelize, modelName: 'user' });
+    username:{ 
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
+    },
+    password:{
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+},{ sequelize, modelName: 'User', tableName: 'users' });
 
-(async () => {
-    await sequelize.sync();
-    const rUser = await User.create({
-        username: 'defend_scotland',
-        email: 'william_walace@braveheart.com',
-    });
-    console.log(rUser.toJSON());
-});
+User.hasMany(Expense)
+User.hasMany(Income)
+
+Income.belongsTo(User)
+Expense.belongsTo(User)
+
+module.exports = User;
